@@ -2,19 +2,46 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 
 /**
  * Created by renecortez on 5/25/17.
  */
 public class Contacts {
+
+    private String name;
+    private String number;
+    static Scanner input = new Scanner(System.in);
+
+
+    public Contacts(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+
+    public static void displayMenuForUser(){
+
+
+    }
+
     public static void main(String[] args) throws IOException {
+
         String directory = "data";
         String filename = "contact.txt";
 
         Path dataDirectory = Paths.get(directory);
         Path dataFile = Paths.get(directory, filename);
+
 
         if (Files.notExists(dataDirectory)) {
             Files.createDirectories(dataDirectory);
@@ -23,13 +50,45 @@ public class Contacts {
             Files.createFile(dataFile);
         }
 
-        List<String> contactList = Arrays.asList("Tuesday|2105555555", "Rene|2106458394", "John Doe|2236475746", "Jane Doe|2344325643");
-        Files.write(Paths.get("data", "contact.txt"), contactList);
+//        List<String> contactList = Arrays.asList("Tuesday|2105555555", "Rene|2106458394", "John Doe|2236475746", "Jane Doe|2344325643");
+//        Files.write(Paths.get("data", "contact.txt"), contactList);
 
-        List<String> lines = Files.readAllLines(dataFile);
-        for (String line : lines){
-            System.out.println(line);
+        List<String > contactList = new ArrayList<>();
+
+        System.out.println("Welcome to your Contacts List\n" +
+                "1. View contacts.\n" +
+                "2. Add a new contact.\n" +
+                "3. Search a contact by name.\n" +
+                "4. Delete an existing contact.\n" +
+                "5. Exit.");
+        System.out.println("Enter an option (1, 2, 3, 4 or 5):");
+        int userChoice = input.nextInt();
+
+        switch (userChoice){
+            case 1:
+                List<String> lines = Files.readAllLines(dataFile);
+                for (String line : lines){
+                    System.out.println(line);
+                }
+                break;
+            case 2:
+                System.out.println("Enter new contact name and number: (name|number)");
+                input.nextLine();
+                String newContact = input.nextLine();
+                Files.write(
+                        Paths.get("data", "contact.txt"),
+                        Arrays.asList(newContact),
+                        StandardOpenOption.APPEND);
+                break;
+            case 3:
+                System.out.println("Enter name of contact you want to see:");
+                input.nextLine();
+                String contactSearch = input.nextLine().trim().toUpperCase();
+                if()
+
         }
+
+
     }
 
 }
