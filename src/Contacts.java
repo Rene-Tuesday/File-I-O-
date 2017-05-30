@@ -86,6 +86,9 @@ public class Contacts {
                 System.out.println("Enter name of contact you want to see:");
                 input.nextLine();
                 String contactSearch = input.nextLine().trim();
+                FileSearch fileSearch = new FileSearch();
+                fileSearch.parseFile("src/contact.txt", contactSearch);
+                System.out.println();
 
         }
 
@@ -94,17 +97,7 @@ public class Contacts {
 
 
 
-        class FileSearch {
 
-            public void parseFile(String filename,String searchStr) throws FileNotFoundException{
-                Scanner scan = new Scanner(new File(String.valueOf(contactList)));
-                while(scan.hasNext()){
-                    String line = scan.nextLine().toLowerCase().toString();
-                    if(line.contains(searchStr)){
-                        System.out.println(line);
-                    }
-                }
-            }
 
 //
 //        public static void main(String[] args) throws FileNotFoundException{
