@@ -3,6 +3,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -34,6 +36,8 @@ public class Contacts {
 
     }
 
+
+
     public static void main(String[] args) throws IOException {
 
         String directory = "data";
@@ -50,8 +54,6 @@ public class Contacts {
             Files.createFile(dataFile);
         }
 
-//        List<String> contactList = Arrays.asList("Tuesday|2105555555", "Rene|2106458394", "John Doe|2236475746", "Jane Doe|2344325643");
-//        Files.write(Paths.get("data", "contact.txt"), contactList);
 
         List<String > contactList = new ArrayList<>();
 
@@ -83,11 +85,34 @@ public class Contacts {
             case 3:
                 System.out.println("Enter name of contact you want to see:");
                 input.nextLine();
-                String contactSearch = input.nextLine().trim().toUpperCase();
-                if()
+                String contactSearch = input.nextLine().trim();
 
         }
 
+
+
+
+
+
+        class FileSearch {
+
+            public void parseFile(String filename,String searchStr) throws FileNotFoundException{
+                Scanner scan = new Scanner(new File(String.valueOf(contactList)));
+                while(scan.hasNext()){
+                    String line = scan.nextLine().toLowerCase().toString();
+                    if(line.contains(searchStr)){
+                        System.out.println(line);
+                    }
+                }
+            }
+
+//
+//        public static void main(String[] args) throws FileNotFoundException{
+//            FileSearch fileSearch = new FileSearch();
+//            fileSearch.parseFile("src/main/resources/test.txt", "am");
+//        }
+
+        }
 
     }
 

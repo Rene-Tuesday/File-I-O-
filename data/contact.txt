@@ -1,3 +1,5 @@
 
 
-name|number
+name | number
+
+Scanner scan = new Scanner(new File(dataFile.toString)).useDelimiter("\n")
